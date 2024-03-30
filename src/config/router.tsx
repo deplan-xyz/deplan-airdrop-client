@@ -5,6 +5,7 @@ import {
 import Home from "../pages/home";
 import Airdrop from "../pages/airdrop";
 import PageLayout from "../components/PageLayout";
+import { AppErrorBoundary } from "../components/AppErrorBoundary";
 
 const router = createBrowserRouter([
     {
@@ -14,11 +15,11 @@ const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                Component: Home
+                Component: Home,
             },
             {
                 path: 'airdrop',
-                Component: Airdrop
+                Component: Airdrop,
             }
         ]
 

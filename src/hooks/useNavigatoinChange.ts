@@ -8,7 +8,7 @@ const useNavigationChange = (): void => {
 
     useEffect(() => {
         if (isConnected) {
-            navigate('/airdrop');
+            navigate('/airdrop', { replace: true });
         } else {
             navigate('/');
         }

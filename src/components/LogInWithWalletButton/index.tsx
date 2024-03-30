@@ -1,8 +1,12 @@
 import { FC } from 'react'
 
-const LogInWithWalletButton: FC = () => {
+interface LogInWithWalletButtonProps {
+    size?: "sm" | "md" | "mdl"
+}
+
+const LogInWithWalletButton: FC<LogInWithWalletButtonProps> = ({ size = 'md' }) => {
     return (
-        <w3m-button size='sm' balance="show" />
+        <w3m-button size={size} balance="hide" />
     )
 }
 

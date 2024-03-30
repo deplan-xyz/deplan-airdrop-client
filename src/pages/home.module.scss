@@ -1,0 +1,29 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    max-width: 700px;
+    gap: 1rem;
+    padding: 10px;
+
+    .title {
+        font-size: 3.75rem;
+        color: var(--text-color-primary);
+        text-align: center;
+        line-height: 1.2em;
+        margin: unset;
+        font-weight: 500;
+    }
+
+    .description {
+        font-size: 1rem;
+        color: var(--text-color-secondary);
+        text-align: center;
+    }
+
+    .connectBtn {
+        margin-top: 15px;
+    }
+}
