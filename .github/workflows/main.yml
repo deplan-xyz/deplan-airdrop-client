@@ -40,7 +40,7 @@ jobs:
       - name: Build
         run: npm run build
         env:
-          VITE_CONNECT_WALLET_PRODUCT_ID: ${{ secrets.VITE_CONNECT_WALLET_PRODUCT_ID }}
+          VITE_CONNECT_WALLET_PRODUCT_ID: ${{ env.VITE_CONNECT_WALLET_PRODUCT_ID }}
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
