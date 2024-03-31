@@ -10,7 +10,7 @@ const Home = () => {
             <span className={styles.title}>Connect Solana Crypto Wallet</span>
             <span className={styles.description}>Connect your Solana crypto wallet and check if you are eligible for $DPLN airdrop</span>
             <div className={styles.connectBtn}>
-                <LogInWithWalletButton size="md" />
+                <LogInWithWalletButton mode="connect" size="md" />
             </div>
         </div>
     )

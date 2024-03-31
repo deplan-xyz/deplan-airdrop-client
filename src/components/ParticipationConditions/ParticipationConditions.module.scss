@@ -40,3 +40,21 @@
 .marginTop {
     margin-top: 10px;
 }
+
+@media screen and (max-width: 768px) {
+    .container {
+        .title {
+            font-size: 1.5rem;
+        }
+
+        .text {
+            font-size: 1rem;
+        }
+
+        .list {
+            .item {
+                font-size: 1.25rem;
+            }
+        }
+    }
+}

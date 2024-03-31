@@ -26,7 +26,7 @@ const router = createBrowserRouter([
 
     }
 ], {
-    basename: isDev ? '/' : '/deplan-airdrop-client/',
+    basename: '/deplan-airdrop-client/',
 });
 
 export default router

@@ -25,5 +25,20 @@
 
     .connectBtn {
         margin-top: 15px;
+        display: flex;
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        .title {
+            font-size: 2.25rem;
+        }
+
+        .description {
+            font-size: 1rem;
+        }
     }
 }

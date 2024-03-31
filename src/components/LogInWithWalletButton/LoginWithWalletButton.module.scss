@@ -1,0 +1,18 @@
+.connectButton {
+    padding: 20px 24px 20px 24px;
+    background-color: var(--accent-color);
+    border-radius: 0px 0px 0px 0px;
+    border: none;
+    width: 50%;
+    font-size: 2.25rem;
+    color: var(--text-color-primary);
+    font-weight: 500;
+}
+
+@media screen and (max-width: 768px) {
+    .connectButton {
+        padding: 15px 20px 15px 20px;
+        width: 80%;
+        font-size: 2rem;
+    }
+}

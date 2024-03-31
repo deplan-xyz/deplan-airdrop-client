@@ -17,9 +17,9 @@ export const solanaConfig = defaultSolanaConfig({
     chains,
     projectId,
     metadata: metadata
-})
+});
 
-createWeb3Modal({
+const modal = createWeb3Modal({
     solanaConfig,
     projectId,
     metadata: metadata,
@@ -32,6 +32,8 @@ createWeb3Modal({
         "--w3m-font-size-master": "12px",
     }
 })
+
+export const Web3Modal = modal;
 
 
 interface Web3ModalProviderProps {
