@@ -1,5 +1,5 @@
 import {
-    createHashRouter as createBrowserRouter,
+    createBrowserRouter,
 } from "react-router-dom";
 
 import Home from "../pages/home";
@@ -23,6 +23,8 @@ const router = createBrowserRouter([
         ]
 
     }
-]);
+], {
+    basename: '/',
+});
 
 export default router
