@@ -5,7 +5,6 @@ import {
 import Home from "../pages/home";
 import Airdrop from "../pages/airdrop";
 import PageLayout from "../components/PageLayout";
-import { AppErrorBoundary } from "../components/AppErrorBoundary";
 
 const router = createBrowserRouter([
     {
