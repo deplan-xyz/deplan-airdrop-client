@@ -1,1 +1,1 @@
-# DePlan Reward Client
+# DePlan Airdrop Client
