@@ -2,7 +2,7 @@ import { FC } from 'react'
 import { solana } from '@web3modal/solana/chains'
 import { createWeb3Modal, defaultSolanaConfig } from '@web3modal/solana/react'
 
-const projectId = import.meta.env.VITE_CONNECT_WALLET_PRODUCT_ID as string || "0944ad32c4a4e58ab4ec9509a1735f62"
+const projectId = import.meta.env.VITE_CONNECT_WALLET_PRODUCT_ID as string
 
 const chains = [solana]
 
