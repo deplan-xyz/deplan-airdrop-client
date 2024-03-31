@@ -5,6 +5,7 @@ import LogInWithWalletButton from "../components/LogInWithWalletButton"
 
 import DeplanLogoSmall from './../assets/logoSmall.svg';
 import DeplanCoinLogo from './../assets/DPLN_Coin logo.png';
+import ParachuteBG from "../components/ParachuteBG";
 
 import styles from './airdrop.module.scss'
 
@@ -17,6 +18,7 @@ const Airdrop = () => {
             </Header>
             <CircleDecoration>
                 <img src={DeplanCoinLogo} width={180} alt="Deplan logo" />
+                <ParachuteBG />
             </CircleDecoration>
             <div className={styles.content}>
                 <span className={styles.title}>Spring $DPLN Airdrop</span>
