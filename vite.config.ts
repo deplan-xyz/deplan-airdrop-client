@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   base: '/deplan-airdrop-client/',
   define: {
-    'process.env': {}
+    'process.env': {},
+    global: {}
   }
 })
