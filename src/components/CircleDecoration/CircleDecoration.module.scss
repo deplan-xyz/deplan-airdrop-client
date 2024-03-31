@@ -1,0 +1,44 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 2rem 0;
+}
+
+.center::before {
+    background: var(--secondary-glow);
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+.center::after {
+    background: var(--primary-glow);
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+}
+
+.center::before,
+.center::after {
+    content: "";
+    position: absolute;
+    filter: blur(45px);
+    animation: rotate 6s linear infinite;
+    transform: translateY(-50%);
+}
+
+.content {
+    z-index: 1;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}

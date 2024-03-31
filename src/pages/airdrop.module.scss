@@ -1,0 +1,29 @@
+.content {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.625rem;
+    width: 80%;
+
+    .title {
+        font-size: 3.75rem;
+        color: var(--text-color-primary);
+        text-align: center;
+        line-height: 1.2em;
+        margin: unset;
+        font-weight: 500;
+    }
+
+    .descriptionContainer {
+        max-width: 600px;
+        display: flex;
+        justify-content: center;
+
+        .description {
+            font-size: 1.125rem;
+            color: var(--text-color-secondary);
+            text-align: center;
+        }
+    }
+}

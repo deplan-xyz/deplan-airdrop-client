@@ -1,0 +1,42 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+
+    .title {
+        color: var(--text-color-primary);
+        font-size: 2.25rem;
+        font-weight: 600;
+    }
+
+    .text {
+        color: var(--text-color-secondary);
+        font-size: 1.125rem;
+    }
+
+    .list {
+        padding: 0 0 0 20px;
+        margin: unset;
+
+        .item {
+            padding: unset;
+            color: var(--text-color-primary);
+            font-size: 1.5rem;
+
+            .linkButton {
+                color: var(--text-color-primary);
+                font-size: inherit;
+                font-weight: 600;
+                text-decoration: underline;
+                cursor: pointer;
+                background: none;
+                border: none;
+            }
+        }
+    }
+}
+
+.marginTop {
+    margin-top: 10px;
+}
