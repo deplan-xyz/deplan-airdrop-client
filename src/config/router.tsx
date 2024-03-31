@@ -6,6 +6,8 @@ import Home from "../pages/home";
 import Airdrop from "../pages/airdrop";
 import PageLayout from "../components/PageLayout";
 
+const isDev = import.meta.env.DEV;
+
 const router = createBrowserRouter([
     {
         id: 'root',
@@ -23,6 +25,8 @@ const router = createBrowserRouter([
         ]
 
     }
-]);
+], {
+    basename: isDev ? '/' : '/deplan-airdrop-client/',
+});
 
 export default router
