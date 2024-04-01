@@ -13,7 +13,7 @@ const ParticipationConditions = () => {
         <div className={styles.container}>
             <span className={styles.title}>Conditions to participate: </span>
             <span className={styles.text}>Hold at least 1 $DPLN token during Apr 1 - May 1, 2024 period. </span>
-            <span className={`${styles.text} ${styles.marginTop}`}>The more DPLN tokens you have in your wallet and the loner you hold them (during Apr 1 - May 1, 2024 period ), the more DPLN tokens will be distributed to your wallet.</span>
+            <span className={`${styles.text} ${styles.marginTop}`}>The more $DPLN tokens you have in your wallet and the longer you hold them (during Apr 1 - May 1, 2024 period ), the more $DPLN tokens will be dropped to your wallet.</span>
             <span className={styles.title}>Make sure you:</span>
             <ul className={styles.list}>
                 <li className={styles.item}>Member <button onClick={() => openLink(TG_URL)} className={styles.linkButton}>TG DePlan Community</button></li>
