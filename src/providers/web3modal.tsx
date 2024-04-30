@@ -9,7 +9,7 @@ const chains = [solana]
 const metadata = {
     name: 'DePlan',
     description: 'DePlan connect wallet modal',
-    url: 'http://localhost:5173/',
+    url: 'https://airdrop.deplan.xyz',
     icons: ['https://avatars.githubusercontent.com/u/37784886']
 }
 
