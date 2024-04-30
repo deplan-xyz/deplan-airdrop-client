@@ -1,36 +1,41 @@
-// import axios from 'axios'
-import { EligibilityData } from './types';
-import { getSolanaBalance } from '../providers/solana';
+import axios from 'axios'
+import { Transaction } from '@solana/web3.js';
+import { Buffer } from 'buffer';
+import { ClaimData } from './types';
 
-// const isDev = import.meta.env.DEV
+const baseUrl = 'https://equitywallet-b362155a0894.herokuapp.com';
 
-// TODO: Replace with your own API URL
-// const baseURL = isDev ? 'http://localhost:3000' : 'https://some-domain.com/api/'
-// const instance = axios.create({
-//     baseURL: baseURL,
-//     timeout: 1000,
-// });
+const baseURL = baseUrl;
+const instance = axios.create({
+    baseURL: baseURL,
+});
 
-// enum Routes {
-//     ELIGIBILITY = '/eligibility',
-// }
+enum Routes {
+    CLAIM_DATA = '/airdrop/claim/:wallet',
+    CALIM = '/airdrop/claim/:wallet/create',
+}
 
-export const fetchEligibilityInfo = async (wallet: string): Promise<EligibilityData> => {
-    let eligibilityData: EligibilityData = {
-        isEligible: false,
-        tokens: 0,
-    };
-
+export const fetchClaimData = async (wallet: string): Promise<ClaimData> => {
     try {
-        // const response = await instance.get<EligibilityData>(Routes.ELIGIBILITY);
-        const tokens = await getSolanaBalance(wallet)
-        eligibilityData = {
-            isEligible: tokens > 0,
-            tokens,
-        };
+        const response = await instance.get(Routes.CLAIM_DATA.replace(':wallet', wallet));
+        return response.data;
     } catch (error) {
-        console.error('Error fetching eligibility info', error)
+        console.error('Error fetching claim data', error)
+        throw error;
     }
+}
 
-    return eligibilityData;
+export const claim = async (wallet: string): Promise<Transaction> => {
+    try {
+        console.log('Claiming', wallet);
+
+        const { data: encodedTransaction } = await instance.get<ClaimData>(Routes.CALIM.replace(':wallet', wallet));
+
+        const transaction = Transaction.from(Buffer.from(encodedTransaction.txnHash, 'base64'));
+
+        return transaction;
+    } catch (error) {
+        console.error('Error claiming', error);
+        throw error;
+    }
 }
