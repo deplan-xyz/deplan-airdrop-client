@@ -2,8 +2,8 @@ import useEligibility from "../../hooks/useEligibility"
 
 import styles from './EligibilityInfo.module.scss'
 
-const EligibleText = () => {
-    return <div className={styles.eligibleText}>CONGRATS! You're eligible for upcoming airdrop
+const EligibleText = ({ tokens }: { tokens: number }) => {
+    return <div className={styles.eligibleText}>CONGRATS! You're Eligible for {tokens} $DPLN!
     </div>
 }
 
@@ -12,7 +12,7 @@ const NotEligibleText = () => {
 }
 
 const EligibilityInfo = () => {
-    const { eligibilityInfo, isLoading, isError } = useEligibility();
+    const { isEligible, tokenAmount, isLoading, isError } = useEligibility();
 
     if (isLoading) {
         return <div>Loading...</div>
@@ -23,8 +23,8 @@ const EligibilityInfo = () => {
     }
 
     return (
-        eligibilityInfo?.isEligible ?
-            <EligibleText /> : <NotEligibleText />
+        isEligible ?
+            <EligibleText tokens={tokenAmount} /> : <NotEligibleText />
     )
 }
 
