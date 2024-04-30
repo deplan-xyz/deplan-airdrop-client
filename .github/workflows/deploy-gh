@@ -42,6 +42,8 @@ jobs:
         env:
           VITE_CONNECT_WALLET_PRODUCT_ID: ${{ secrets.VITE_CONNECT_WALLET_PRODUCT_ID }}
           VITE_MORALIS_API_KEY: ${{ secrets.VITE_MORALIS_API_KEY }}
+          VITE_NETWORK: ${{ secrets.VITE_NETWORK }}
+          VITE_DPLN_MINT: ${{ secrets.VITE_DPLN_MINT }}
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
