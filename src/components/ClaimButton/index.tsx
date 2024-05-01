@@ -1,7 +1,7 @@
 
-import { Connection } from '@solana/web3.js';
+import { Transaction } from '@solana/web3.js';
 import { useWeb3ModalProvider } from '@web3modal/solana/react';
-import { claim } from '../../api/api';
+import { claim, claimSend } from '../../api/api';
 import useEligibility from '../../hooks/useEligibility';
 import useWallet from '../../hooks/useWallet';
 import styles from './ClaimButton.module.scss';
@@ -37,10 +37,13 @@ const ClaimButton = () => {
 
             const transaction = await claim(address);
 
-            await walletProvider.sendTransaction(transaction, connection as Connection)
-                .catch((error: unknown) => {
-                    console.error('Error signing transaction', error);
-                });
+            const signedTxn = await walletProvider.signTransaction(transaction)
+            .catch((error: unknown) => {
+                console.error('Error signing transaction', error);
+            });
+            
+            await claimSend(address, (signedTxn as Transaction).serialize().toString('base64'));
+
         } catch (error) {
             console.error('Error claiming', error);
         }

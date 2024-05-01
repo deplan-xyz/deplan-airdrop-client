@@ -39,3 +39,14 @@ export const claim = async (wallet: string): Promise<Transaction> => {
         throw error;
     }
 }
+
+export const claimSend = async (wallet: string, txn: string): Promise<void> => {
+    try {
+
+        await instance.post<ClaimData>(Routes.CALIM.replace(':wallet', wallet), { txn });
+
+    } catch (error) {
+        console.error('Error claiming', error);
+        throw error;
+    }
+}
