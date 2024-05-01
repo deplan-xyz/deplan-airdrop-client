@@ -36,14 +36,11 @@ const ClaimButton = () => {
 
 
             const transaction = await claim(address);
-            console.log('Transaction', transaction);
 
-            await walletProvider.sendTransaction(transaction, connection as Connection).then((signedTransaction) => {
-                console.log('Signed transaction', signedTransaction);
-
-            }).catch((error: unknown) => {
-                console.error('Error signing transaction', error);
-            });
+            await walletProvider.sendTransaction(transaction, connection as Connection)
+                .catch((error: unknown) => {
+                    console.error('Error signing transaction', error);
+                });
         } catch (error) {
             console.error('Error claiming', error);
         }
