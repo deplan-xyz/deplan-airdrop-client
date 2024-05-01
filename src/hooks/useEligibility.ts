@@ -7,7 +7,7 @@ const LAMPORDS = 1_000_000;
 
 const useEligibility = () => {
     const { address } = useWallet();
-    const { data: eligibilityData, isError, isLoading, isFetching } =
+    const { data: eligibilityData, isError, isLoading, isFetching, refetch: refetchClaimData } =
         useQuery<ClaimData>({
             queryKey: ['eligibility', address],
             enabled: !!address,
@@ -17,7 +17,7 @@ const useEligibility = () => {
     const claimAmount = eligibilityData?.claimAmount ?? 0;
 
     return {
-        isEligible: Math.round(claimAmount / LAMPORDS) > 1,
+        isEligible: Math.round(claimAmount / LAMPORDS) >= 1,
         tokenAmount: Math.round(claimAmount / LAMPORDS),
         claimPeriod: {
             from: (eligibilityData?.claimFromDate ?? 0) * 1000,
@@ -29,6 +29,7 @@ const useEligibility = () => {
         },
         isError,
         isLoading: isLoading || isFetching,
+        refetchClaimData,
     };
 };
 
