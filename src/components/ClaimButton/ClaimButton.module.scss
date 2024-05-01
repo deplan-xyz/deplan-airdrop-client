@@ -29,6 +29,20 @@
     }
 }
 
+.retryTextButton {
+    color: var(--white-color);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: none;
+    
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
 @media screen and (max-width: 768px) {
     .button {
         width: 100%;
