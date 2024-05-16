@@ -1,9 +1,8 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 import { useQueryClient } from '@tanstack/react-query';
 
 import useWallet from '../../hooks/useWallet';
 import { CheckTwitterFollowStatusResponse } from '../../api/types';
-import { checkIsuserFollowDePlanOnTwitter } from '../../api/api';
 import CircleLoader from '../CircleLoader';
 
 import XLogo from './../../assets/twitterx.svg'
@@ -20,16 +19,6 @@ const TwitterFollowButton: FC<TwitterFollowButtonProps> = ({ onConnect, loading 
     const queryClient = useQueryClient();
 
     const isFollowingData = queryClient.getQueryData<CheckTwitterFollowStatusResponse>(['twitterFollowStatus', address]);
-
-
-    useEffect(() => {
-        if (!address) return;
-        (async () => {
-            const _isFollowing = await checkIsuserFollowDePlanOnTwitter(address);
-
-            queryClient.setQueryData(['twitterFollowStatus', address], _isFollowing);
-        })()
-    }, [address])
 
     const onClick = async () => {
         if (isFollowingData?.isFollowing) return;

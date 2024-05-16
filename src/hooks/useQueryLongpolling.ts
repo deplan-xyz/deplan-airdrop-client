@@ -20,9 +20,7 @@ const useCheckTwitterFollow = () => {
         }),
         retryDelay: INTERVAL,
         retry(failureCount, error) {
-            console.log('failureCount', failureCount);
-
-            if (error instanceof Error && error.message === 'Timeout') {
+            if (error instanceof Error && error.message === 'Timeout' || failureCount * INTERVAL >= TIMEOUT) {
                 setInProgress(false);
                 return false;
             }

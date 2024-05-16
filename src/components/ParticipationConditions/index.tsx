@@ -1,12 +1,11 @@
 import useCheckTwitterFollow from '../../hooks/useQueryLongpolling';
-import TwitterFollowButton from '../TwitterFollowButton.tsx';
+import TwitterFollowButton from '../TwitterFollowButton/index.tsx';
 import styles from './ParticipationConditions.module.scss';
 
 const TG_URL = 'https://t.me/+lb5j0kVrSyJiMTky'
-const TWITTER_URL = 'https://twitter.com/deplan_xyz'
 
 const ParticipationConditions = () => {
-    const { startFollow, inProgress, followStatus } = useCheckTwitterFollow();
+    const { startFollow, inProgress } = useCheckTwitterFollow();
 
     const openLink = (url: string) => {
         window.open(url, '_blank')
@@ -15,7 +14,6 @@ const ParticipationConditions = () => {
     const follow = async () => {
         try {
             const url = await startFollow();
-            console.log('url', url);
 
             openLink(url);
         } catch (error) {
