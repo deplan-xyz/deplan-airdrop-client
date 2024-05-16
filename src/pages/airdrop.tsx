@@ -23,7 +23,7 @@ const Airdrop = () => {
             <div className={styles.content}>
                 <span className={styles.title}>Spring $DPLN Airdrop</span>
                 <div className={styles.descriptionContainer}>
-                    <span className={styles.description}>We decided to support early adopters who held $DPLN tokens during Apr 1 - May 1, 2024 period.</span>
+                    <span className={styles.description}>Continue supporting DePlan early adopters and believers.</span>
                 </div>
                 <InfoCard />
             </div>

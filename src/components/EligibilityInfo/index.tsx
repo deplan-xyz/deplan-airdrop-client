@@ -3,12 +3,12 @@ import useEligibility from "../../hooks/useEligibility"
 import styles from './EligibilityInfo.module.scss'
 
 const EligibleText = () => {
-    return <div className={styles.eligibleText}> You're eligible for upcoming airdrop
+    return <div className={styles.eligibleText}>CONGRATS! You're eligible for upcoming airdrop
     </div>
 }
 
 const NotEligibleText = () => {
-    return <div className={styles.notEligibleText}>You’re not eligible for upcoming airdrop</div>
+    return <div className={styles.notEligibleText}>Ooops....You’re not eligible for upcoming airdrop</div>
 }
 
 const EligibilityInfo = () => {

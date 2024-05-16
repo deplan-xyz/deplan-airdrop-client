@@ -1,5 +1,5 @@
 import {
-    createBrowserRouter,
+    createHashRouter as createBrowserRouter,
 } from "react-router-dom";
 
 import Home from "../pages/home";
@@ -23,8 +23,6 @@ const router = createBrowserRouter([
         ]
 
     }
-], {
-    basename: '/deplan-airdrop-client/',
-});
+]);
 
 export default router
