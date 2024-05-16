@@ -4,5 +4,5 @@ export interface EligibilityData {
 }
 
 export interface CheckTwitterFollowStatusResponse {
-    isFolowing: boolean;
+    isFollowing: boolean;
 }

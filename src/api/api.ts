@@ -5,7 +5,7 @@ import { getSolanaBalance } from '../providers/solana';
 const isDev = import.meta.env.DEV
 
 const baseURL = 'https://equitywallet-b362155a0894.herokuapp.com';
-const baseURLDev = 'http://localhost:3000';
+const baseURLDev = 'http://localhost:9899';
 
 const instance = axios.create({
     baseURL: isDev ? baseURLDev : baseURL,
@@ -15,8 +15,8 @@ enum Routes {
     CLAIM_DATA = '/airdrop/claim/:wallet',
     CALIM = '/airdrop/claim/:wallet/create',
     TWITTER_GET_AUTH_URL = '/airdrop/twitter/auth/url',
-    TWITTER_FOLLOW = '/airdrop/twitter/follow',
-    TWITTER_FOLLOW_CHECK = '/airdrop/twitter/follow/check',
+    TWITTER_FOLLOW = '/socials/twitter/follow',
+    TWITTER_FOLLOW_CHECK = '/socials/twitter/follow/check',
 }
 
 export const fetchEligibilityInfo = async (wallet: string): Promise<EligibilityData> => {

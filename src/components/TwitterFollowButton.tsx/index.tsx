@@ -32,7 +32,7 @@ const TwitterFollowButton: FC<TwitterFollowButtonProps> = ({ onConnect, loading 
     }, [address])
 
     const onClick = async () => {
-        if (isFollowingData?.isFolowing) return;
+        if (isFollowingData?.isFollowing) return;
 
         onConnect();
     }
@@ -43,8 +43,8 @@ const TwitterFollowButton: FC<TwitterFollowButtonProps> = ({ onConnect, loading 
             {loading ?
                 <div className={styles.buttonLoading}><CircleLoader width='20px' height='20px' /></div> :
                 <button
-                    className={`${styles.button} ${isFollowingData?.isFolowing ? styles.buttonFollowing : ''}`}
-                    onClick={onClick}>{isFollowingData?.isFolowing ?
+                    className={`${styles.button} ${isFollowingData?.isFollowing ? styles.buttonFollowing : ''}`}
+                    onClick={onClick}>{isFollowingData?.isFollowing ?
                         <span className={styles.checkmark} /> :
                         <div className={styles.connectText}><img src={XLogo} width={20} /> <span>Connect</span></div>}
                 </button>}
