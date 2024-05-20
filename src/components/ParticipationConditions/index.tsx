@@ -1,5 +1,6 @@
 import useCheckTwitterFollow from '../../hooks/useQueryLongpolling';
-import TwitterFollowButton from '../TwitterFollowButton/index.tsx';
+import ConnectDeplanWallet from '../ConnectDeplanWallet';
+import TwitterFollowButton from '../TwitterFollowButton';
 import styles from './ParticipationConditions.module.scss';
 
 const TG_URL = 'https://t.me/+lb5j0kVrSyJiMTky'
@@ -32,7 +33,10 @@ const ParticipationConditions = () => {
                     You follow DePlan on X and posted "DePlan is the new plan" <br />
                     <TwitterFollowButton loading={inProgress} onConnect={follow} />
                 </li>
-                <li className={styles.item}>Tweet "DePlan is the new plan"</li>
+                <li className={styles.item}>
+                    You are using DePlan Browser with Pay-As-You-Go products <br />
+                    <ConnectDeplanWallet />
+                </li>
             </ul>
         </div >
     )
