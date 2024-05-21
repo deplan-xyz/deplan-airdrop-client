@@ -1,18 +1,30 @@
 import { format } from 'date-fns/format'
 
 import useEligibility from '../../hooks/useEligibility';
+import useCheckTwitterFollow from '../../hooks/useQueryLongpolling';
+import TwitterFollowButton from '../TwitterFollowButton/index.tsx';
 import styles from './ParticipationConditions.module.scss';
 
 const TG_URL = 'https://t.me/+lb5j0kVrSyJiMTky'
-const TWITTER_URL = 'https://twitter.com/deplan_xyz'
 
 const ParticipationConditions = () => {
     const { holdPeriod } = useEligibility();
     const from = format(new Date(holdPeriod.from), 'MMM d')
     const to = format(new Date(holdPeriod.to), 'MMM d, yyyy')
+    const { startFollow, inProgress } = useCheckTwitterFollow();
 
     const openLink = (url: string) => {
         window.open(url, '_blank')
+    }
+
+    const follow = async () => {
+        try {
+            const url = await startFollow();
+
+            openLink(url);
+        } catch (error) {
+            console.error('Error getting Twitter auth URL', error);
+        }
     }
 
     return (
@@ -22,7 +34,10 @@ const ParticipationConditions = () => {
             <span className={styles.title}>Make sure you:</span>
             <ul className={styles.list}>
                 <li className={styles.item}>Member <button onClick={() => openLink(TG_URL)} className={styles.linkButton}>TG DePlan Community</button></li>
-                <li className={styles.item}>Follow <button onClick={() => openLink(TWITTER_URL)} className={styles.linkButton}>DePlan on Twitter</button></li>
+                <li className={styles.item}>
+                    You follow DePlan on X and posted "DePlan is the new plan" <br />
+                    <TwitterFollowButton loading={inProgress} onConnect={follow} />
+                </li>
                 <li className={styles.item}>Tweet "DePlan is the new plan"</li>
             </ul>
         </div >

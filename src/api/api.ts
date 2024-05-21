@@ -2,17 +2,23 @@ import axios from 'axios'
 import { Transaction } from '@solana/web3.js';
 import { Buffer } from 'buffer';
 import { ClaimData } from './types';
+import { CheckTwitterFollowStatusResponse } from './types';
 
-const baseUrl = 'https://equitywallet-b362155a0894.herokuapp.com';
+const isDev = import.meta.env.DEV
 
-const baseURL = baseUrl;
+const baseURL = 'https://equitywallet-b362155a0894.herokuapp.com';
+const baseURLDev = 'http://localhost:9899';
+
 const instance = axios.create({
-    baseURL: baseURL,
+    baseURL: !isDev ? baseURLDev : baseURL,
 });
 
 enum Routes {
     CLAIM_DATA = '/airdrop/claim/:wallet',
     CALIM = '/airdrop/claim/:wallet/create',
+    TWITTER_GET_AUTH_URL = '/airdrop/twitter/auth/url',
+    TWITTER_FOLLOW = '/socials/twitter/follow',
+    TWITTER_FOLLOW_CHECK = '/socials/twitter/follow/check',
 }
 
 export const fetchClaimData = async (wallet: string): Promise<ClaimData> => {
@@ -40,13 +46,29 @@ export const claim = async (wallet: string): Promise<Transaction> => {
     }
 }
 
-export const claimSend = async (wallet: string, txn: string): Promise<void> => {
+export const followTwitter = async (wallet: string): Promise<string> => {
     try {
+        const followUrl = await instance.get(Routes.TWITTER_FOLLOW, {
+            params: {
+                wallet,
+            }
+        });
 
-        await instance.post<ClaimData>(Routes.CALIM.replace(':wallet', wallet), { txn });
-
+        return followUrl.data;
     } catch (error) {
-        console.error('Error claiming', error);
-        throw error;
+        throw new Error('Error following DePlan on Twitter');
+    }
+}
+
+export const checkIsuserFollowDePlanOnTwitter = async (wallet: string) => {
+    try {
+        const response = await instance.get<CheckTwitterFollowStatusResponse>(Routes.TWITTER_FOLLOW_CHECK, {
+            params: {
+                wallet,
+            },
+        });
+        return response.data;
+    } catch (error) {
+        throw new Error('Error checking if user follows DePlan on Twitter');
     }
 }

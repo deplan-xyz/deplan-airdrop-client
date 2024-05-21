@@ -6,3 +6,7 @@ export interface ClaimData {
     claimAmount: number,
     txnHash: string
 }
+
+export interface CheckTwitterFollowStatusResponse {
+    isFollowing: boolean;
+}
