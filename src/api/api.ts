@@ -1,6 +1,8 @@
 import axios from 'axios'
-import { CheckTwitterFollowStatusResponse, EligibilityData } from './types';
-import { getSolanaBalance } from '../providers/solana';
+import { Transaction } from '@solana/web3.js';
+import { Buffer } from 'buffer';
+import { ClaimData } from './types';
+import { CheckTwitterFollowStatusResponse } from './types';
 
 const isDev = import.meta.env.DEV
 
@@ -19,24 +21,29 @@ enum Routes {
     TWITTER_FOLLOW_CHECK = '/socials/twitter/follow/check',
 }
 
-export const fetchEligibilityInfo = async (wallet: string): Promise<EligibilityData> => {
-    let eligibilityData: EligibilityData = {
-        isEligible: false,
-        tokens: 0,
-    };
-
+export const fetchClaimData = async (wallet: string): Promise<ClaimData> => {
     try {
-        // const response = await instance.get<EligibilityData>(Routes.ELIGIBILITY);
-        const tokens = await getSolanaBalance(wallet)
-        eligibilityData = {
-            isEligible: tokens > 0,
-            tokens,
-        };
+        const response = await instance.get(Routes.CLAIM_DATA.replace(':wallet', wallet));
+        return response.data;
     } catch (error) {
-        console.error('Error fetching eligibility info', error)
+        console.error('Error fetching claim data', error)
+        throw error;
     }
+}
 
-    return eligibilityData;
+export const claim = async (wallet: string): Promise<Transaction> => {
+    try {
+        console.log('Claiming', wallet);
+
+        const { data: encodedTransaction } = await instance.get<ClaimData>(Routes.CALIM.replace(':wallet', wallet));
+
+        const transaction = Transaction.from(Buffer.from(encodedTransaction.txnHash, 'base64'));
+
+        return transaction;
+    } catch (error) {
+        console.error('Error claiming', error);
+        throw error;
+    }
 }
 
 export const followTwitter = async (wallet: string): Promise<string> => {

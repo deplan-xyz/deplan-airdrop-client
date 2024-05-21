@@ -1,0 +1,50 @@
+.button {
+    width: 75%;
+    height: 85px;
+    margin-top: 40px;
+    min-width: 300px;
+    font-size: 36px;
+    font-weight: 500;
+
+
+    &.disabled {
+        background-color: var(--disabled-bg-color);
+        color: var(--disabled-text-color);
+        text-align: center;
+        color: #b3b3b3;
+        cursor: not-allowed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    &.active {
+        background: var(--accent-color);
+        color: var(--white-color);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        justify-content: center;
+        align-items: center;    
+    }
+}
+
+.retryTextButton {
+    color: var(--white-color);
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background: none;
+    
+    &:hover {
+        text-decoration: underline;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .button {
+        width: 100%;
+    }
+}

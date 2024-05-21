@@ -1,6 +1,10 @@
-export interface EligibilityData {
-    isEligible: boolean;
-    tokens: number;
+export interface ClaimData {
+    holdFromDate: number,
+    holdToDate: number,
+    claimFromDate: number,
+    claimToDate: number,
+    claimAmount: number,
+    txnHash: string
 }
 
 export interface CheckTwitterFollowStatusResponse {

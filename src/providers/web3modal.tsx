@@ -10,7 +10,7 @@ const phantomWallet = 'a797aa35c0fadbfc1a53e7f675162ed5226968b44a19ee3d24385c64d
 const metadata = {
     name: 'DePlan',
     description: 'DePlan connect wallet modal',
-    url: 'http://localhost:5173/',
+    url: 'https://airdrop.deplan.xyz',
     icons: ['https://avatars.githubusercontent.com/u/37784886']
 }
 
