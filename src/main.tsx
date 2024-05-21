@@ -6,6 +6,7 @@ import Moralis from 'moralis'
 
 import router from './config/router'
 import Web3ModalProvider from './providers/web3modal'
+import ConnectDeplanAppDialog from './components/ConnectDeplanAppDialog';
 
 import './index.scss'
 
@@ -30,6 +31,7 @@ createRoot(document.getElementById("root")!).render(
     <Web3ModalProvider>
       <QueryClientProvider client={queryClient}>
         <RouterProvider router={router} />
+        <ConnectDeplanAppDialog />
       </QueryClientProvider>
     </Web3ModalProvider>
   </React.StrictMode>

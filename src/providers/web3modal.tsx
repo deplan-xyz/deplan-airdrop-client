@@ -5,6 +5,7 @@ import { createWeb3Modal, defaultSolanaConfig } from '@web3modal/solana/react'
 const projectId = import.meta.env.VITE_CONNECT_WALLET_PRODUCT_ID as string
 
 const chains = [solana]
+const phantomWallet = 'a797aa35c0fadbfc1a53e7f675162ed5226968b44a19ee3d24385c64d1d3c393';
 
 const metadata = {
     name: 'DePlan',
@@ -25,6 +26,7 @@ const modal = createWeb3Modal({
     metadata: metadata,
     chains,
     enableAnalytics: false,
+    includeWalletIds: [phantomWallet],
     themeVariables: {
         "--w3m-font-family": "Instrument Sans, sans-serif",
         "--w3m-accent": "#34DEDC",
