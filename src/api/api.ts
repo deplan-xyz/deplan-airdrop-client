@@ -15,7 +15,7 @@ const instance = axios.create({
 
 enum Routes {
     CLAIM_DATA = '/airdrop/claim/:wallet',
-    CALIM = '/airdrop/claim/:wallet/create',
+    CLAIM = '/airdrop/claim/:wallet/create',
     TWITTER_GET_AUTH_URL = '/airdrop/twitter/auth/url',
     TWITTER_FOLLOW = '/socials/twitter/follow',
     TWITTER_FOLLOW_CHECK = '/socials/twitter/follow/check',
@@ -35,11 +35,22 @@ export const claim = async (wallet: string): Promise<Transaction> => {
     try {
         console.log('Claiming', wallet);
 
-        const { data: encodedTransaction } = await instance.get<ClaimData>(Routes.CALIM.replace(':wallet', wallet));
+        const { data: encodedTransaction } = await instance.get<ClaimData>(Routes.CLAIM.replace(':wallet', wallet));
 
         const transaction = Transaction.from(Buffer.from(encodedTransaction.txnHash, 'base64'));
 
         return transaction;
+    } catch (error) {
+        console.error('Error claiming', error);
+        throw error;
+    }
+}
+
+export const claimSend = async (wallet: string, txn: string): Promise<void> => {
+    try {
+
+        await instance.post<ClaimData>(Routes.CLAIM.replace(':wallet', wallet), { txn });
+
     } catch (error) {
         console.error('Error claiming', error);
         throw error;
