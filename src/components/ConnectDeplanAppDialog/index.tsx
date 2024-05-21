@@ -48,7 +48,7 @@ const ConnectDeplanAppDialog: FC = () => {
                     src={connectDeplanWalletFrameSrc}
                     title="DePlan" />
             </dialog>
-            <iframe width={0} height={0} src={connectDeplanWalletFrameSrc} />
+            <iframe style={{ display: 'none' }} src={connectDeplanWalletFrameSrc} />
         </>
     )
 }
