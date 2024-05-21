@@ -18,7 +18,7 @@ const useEligibility = () => {
 
     return {
         isEligible: Math.round(claimAmount / LAMPORDS) >= 1,
-        tokenAmount: Math.round(claimAmount / LAMPORDS),
+        tokenAmount: claimAmount / LAMPORDS,
         claimPeriod: {
             from: (eligibilityData?.claimFromDate ?? 0) * 1000,
             to: (eligibilityData?.claimToDate ?? 0) * 1000

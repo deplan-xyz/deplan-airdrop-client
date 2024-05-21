@@ -56,7 +56,7 @@ const ClaimButton = () => {
                 enqueueSnackbar({ message: 'Claim failed. Try again', variant: 'error', action: () => <button className={styles.retryTextButton} onClick={onClaim}>Retry</button> });
             });
 
-            enqueueSnackbar({ message: `Successfully claimed ${tokenAmount.toLocaleString()} $DPLN`, variant: 'success' });
+            enqueueSnackbar({ message: `Successfully claimed ${tokenAmount} $DPLN`, variant: 'success' });
             refetchClaimData();
 
         } catch (error) {
@@ -69,8 +69,8 @@ const ClaimButton = () => {
     };
 
     return isDisabled || loading ?
-        <div className={`${styles.button} ${styles.disabled}`}><span>Claim {tokenAmount.toLocaleString()} $DPLN</span></div> :
-        <button onClick={onClaim} className={`${styles.button} ${styles.active}`}>Claim {tokenAmount.toLocaleString()} $DPLN</button>
+        <div className={`${styles.button} ${styles.disabled}`}><span>Claim {tokenAmount} $DPLN</span></div> :
+        <button onClick={onClaim} className={`${styles.button} ${styles.active}`}>Claim {tokenAmount} $DPLN</button>
 }
 
 export default ClaimButton
