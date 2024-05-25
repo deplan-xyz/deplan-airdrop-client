@@ -29,8 +29,15 @@
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended"
   ],
-  "plugins": ["simple-import-sort"],
+  "plugins": [
+    "simple-import-sort",
+    "react",
+    "react-hooks",
+    "jsx-a11y",
+    "prettier"
+  ],
   "rules": {
+    "prettier/prettier": "error",
     "react/react-in-jsx-scope": "off",
     "react/no-unescaped-entities": "off"
   }
