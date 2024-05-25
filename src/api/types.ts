@@ -5,6 +5,7 @@ export interface ClaimData {
   claimToDate: number;
   claimAmount: number;
   txnHash: string;
+  isClaim: boolean; // :)
 }
 
 export interface CheckTwitterFollowStatusResponse {

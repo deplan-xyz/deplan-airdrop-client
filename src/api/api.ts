@@ -39,7 +39,7 @@ export const claim = async (
 ): Promise<Transaction> => {
   try {
     const { data: encodedTransaction } = await instance.get<ClaimData>(
-      Routes.CLAIM.replace(':wallet', wallet) + `?dplanWallet=${dplanWallet}`
+      Routes.CLAIM.replace(':wallet', wallet) + `?dePlanWallet=${dplanWallet}`
     );
 
     const transaction = Transaction.from(

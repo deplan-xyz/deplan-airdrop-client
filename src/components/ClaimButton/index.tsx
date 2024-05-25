@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { AxiosError } from 'axios';
 import { Transaction } from '@solana/web3.js';
 import { enqueueSnackbar } from 'notistack';
 import { useWeb3ModalProvider } from '@web3modal/solana/react';
@@ -13,7 +14,8 @@ import styles from './ClaimButton.module.scss';
 const ClaimButton = () => {
   const [loading, setLoading] = useState(false);
   const { address } = useWallet();
-  const { tokenAmount, isEligible, refetchClaimData } = useEligibility();
+  const { tokenAmount, canClaim, refetchClaimData, isClaimDone } =
+    useEligibility();
   const { walletProvider, connection } = useWeb3ModalProvider();
   const { deplanWallet } = useDeplanWallet();
 
@@ -35,9 +37,6 @@ const ClaimButton = () => {
         throw new Error('No connection');
       }
 
-      console.log('address', address);
-      console.log('deplanWallet', deplanWallet);
-
       const transaction = await claim(address, deplanWallet);
 
       const signedTxn = await walletProvider
@@ -56,9 +55,11 @@ const ClaimButton = () => {
       await claimSend(
         address,
         (signedTxn as Transaction).serialize().toString('base64')
-      ).catch(() => {
+      ).catch((e) => {
         enqueueSnackbar({
-          message: 'Claim failed. Try again',
+          message:
+            'Claim failed. Try again. Reason: ' +
+            (e as AxiosError<{ message: string }>)?.response?.data?.message,
           variant: 'error',
           action: () => (
             <button className={styles.retryTextButton} onClick={onClaim}>
@@ -75,7 +76,12 @@ const ClaimButton = () => {
       refetchClaimData();
     } catch (error) {
       console.error('Error claiming', error);
-      enqueueSnackbar({ message: 'Claim failed', variant: 'error' });
+      enqueueSnackbar({
+        message:
+          'Claim failed. Reason: ' +
+          (error as AxiosError<{ message: string }>)?.response?.data?.message,
+        variant: 'error'
+      });
     } finally {
       setLoading(false);
     }
@@ -87,9 +93,13 @@ const ClaimButton = () => {
         Once claiming is available you'll be able to press button below to claim
         your $DPLN tokens
       </span>
-      {!isEligible || loading ? (
+      {!canClaim || loading || isClaimDone ? (
         <div className={`${styles.button} ${styles.disabled}`}>
-          <span>Claim {tokenAmount.toLocaleString()} $DPLN</span>
+          <span>
+            {!isClaimDone
+              ? `Claim ${tokenAmount.toLocaleString()} $DPLN`
+              : `${tokenAmount.toLocaleString()} $DPLN claimed`}
+          </span>
         </div>
       ) : (
         <button

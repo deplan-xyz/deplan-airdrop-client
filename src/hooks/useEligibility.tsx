@@ -28,6 +28,8 @@ const ElegibilityContext = createContext({
   holdPeriod: { from: 0, to: 0 },
   isError: false,
   isLoading: false,
+  canClaim: false,
+  isClaimDone: false,
   refetchClaimData: () => {
     return;
   }
@@ -59,18 +61,20 @@ export const ElegibilityProvider: FC<DeplanWalletProviderProps> = ({
   );
 
   useEffect(() => {
-    if (!deplanWallet || !followStatus?.isFollowing || claimAmount < 1) {
+    if (claimAmount < 1) {
       setIsEligible(false);
       return;
     }
 
     setIsEligible(true);
-  }, [claimAmount, deplanWallet, followStatus]);
+  }, [claimAmount]);
 
   return (
     <ElegibilityContext.Provider
       value={{
         isEligible: isEligible && !isError,
+        canClaim: !!deplanWallet && !!followStatus?.isFollowing && isEligible,
+        isClaimDone: !!eligibilityData?.isClaim,
         tokenAmount: Math.round(claimAmount / LAMPORDS),
         claimPeriod: {
           from: (eligibilityData?.claimFromDate ?? 0) * 1000,

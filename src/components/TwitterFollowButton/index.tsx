@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 
 import CircleLoader from '../CircleLoader';
 import useCheckTwitterFollow from '../../hooks/useQueryLongpolling';
@@ -15,12 +15,7 @@ const TwitterFollowButton: FC<TwitterFollowButtonProps> = ({
   onConnect,
   loading
 }) => {
-  const { followStatus, checkIsuserFollowDePlanOnTwitter } =
-    useCheckTwitterFollow();
-
-  useEffect(() => {
-    checkIsuserFollowDePlanOnTwitter();
-  }, []);
+  const { followStatus } = useCheckTwitterFollow();
 
   const onClick = async () => {
     if (followStatus?.isFollowing) return;
