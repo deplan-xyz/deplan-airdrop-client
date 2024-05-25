@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { solana } from '@web3modal/solana/chains';
-import { createWeb3Modal, defaultSolanaConfig } from '@web3modal/solana/react';
+import { createWeb3Modal, defaultSolanaConfig, useWeb3ModalTheme } from '@web3modal/solana/react';
 
 const projectId = import.meta.env.VITE_CONNECT_WALLET_PRODUCT_ID as string;
 
@@ -19,21 +19,23 @@ export const solanaConfig = defaultSolanaConfig({
   metadata: metadata
 });
 
-const modal = createWeb3Modal({
+createWeb3Modal({
   solanaConfig,
   projectId,
   metadata: metadata,
+  allowUnsupportedChain: false,
   chains,
   enableAnalytics: false,
   themeVariables: {
     '--w3m-font-family': 'Instrument Sans, sans-serif',
-    '--w3m-accent': '#34DEDC',
-    '--w3m-border-radius-master': '8px',
-    '--w3m-font-size-master': '12px'
-  }
+    '--w3m-accent': '#34DEDC'
+  },
+  featuredWalletIds: [
+    'a797aa35c0fadbfc1a53e7f675162ed5226968b44a19ee3d24385c64d1d3c393'
+  ],
+  termsConditionsUrl: 'https://walletconnect.com/terms',
+  privacyPolicyUrl: 'https://walletconnect.com/privacy'
 });
-
-export const Web3Modal = modal;
 
 interface Web3ModalProviderProps {
   children: React.ReactNode;

@@ -1,6 +1,10 @@
-import { FC } from 'react';
-
-import { Web3Modal } from '../../providers/web3modal';
+import { FC, useEffect } from 'react';
+import {
+  useWeb3Modal,
+  useWeb3ModalState,
+  useWeb3ModalEvents,
+  useWeb3ModalProvider
+} from '@web3modal/solana/react';
 
 import styles from './LoginWithWalletButton.module.scss';
 interface LogInWithWalletButtonProps {
@@ -9,14 +13,26 @@ interface LogInWithWalletButtonProps {
 }
 
 const CustomConnectButton: FC = () => {
+  const { open } = useWeb3Modal();
+  const { open: isOpened } = useWeb3ModalState();
+  const events = useWeb3ModalEvents();
+  const providerProps = useWeb3ModalProvider();
+
+  useEffect(() => {
+    console.log('events', events);
+  }, [events]);
+
+  useEffect(() => {
+    console.log('providerProps', providerProps);
+  }, [providerProps]);
+
   const onConnect = async () => {
-    await Web3Modal.open();
-    Web3Modal.setLoading(true);
+    await open();
   };
 
   return (
     <button
-      disabled={Web3Modal.getState().open}
+      disabled={isOpened}
       className={styles.connectButton}
       onClick={onConnect}
     >
