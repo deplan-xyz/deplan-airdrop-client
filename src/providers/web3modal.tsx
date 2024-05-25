@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { solana } from '@web3modal/solana/chains';
-import { createWeb3Modal, defaultSolanaConfig, useWeb3ModalTheme } from '@web3modal/solana/react';
+import { createWeb3Modal, defaultSolanaConfig } from '@web3modal/solana/react';
 
 const projectId = import.meta.env.VITE_CONNECT_WALLET_PRODUCT_ID as string;
 
