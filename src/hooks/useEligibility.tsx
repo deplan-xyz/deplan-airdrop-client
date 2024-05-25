@@ -1,17 +1,19 @@
-import { useQuery } from '@tanstack/react-query';
-import { fetchClaimData } from '../api/api';
-import { ClaimData } from '../api/types';
-import useWallet from './useWallet';
-import { useDeplanWallet } from './useDeplanWalletAddress';
 import {
   FC,
   ReactNode,
   createContext,
   useContext,
   useEffect,
+  useMemo,
   useState
 } from 'react';
+import { useQuery } from '@tanstack/react-query';
+
+import useWallet from './useWallet';
 import useCheckTwitterFollow from './useQueryLongpolling';
+import { ClaimData } from '../api/types';
+import { fetchClaimData } from '../api/api';
+import { useDeplanWallet } from './useDeplanWalletAddress';
 
 const LAMPORDS = 1_000_000;
 
@@ -26,7 +28,9 @@ const ElegibilityContext = createContext({
   holdPeriod: { from: 0, to: 0 },
   isError: false,
   isLoading: false,
-  refetchClaimData: () => {}
+  refetchClaimData: () => {
+    return;
+  }
 });
 
 export const ElegibilityProvider: FC<DeplanWalletProviderProps> = ({
@@ -49,16 +53,19 @@ export const ElegibilityProvider: FC<DeplanWalletProviderProps> = ({
     staleTime: 0
   });
 
-  const claimAmount = eligibilityData?.claimAmount ?? 0;
+  const claimAmount = useMemo(
+    () => eligibilityData?.claimAmount ?? 0,
+    [eligibilityData]
+  );
 
   useEffect(() => {
-    if (!deplanWallet || !followStatus?.isFollowing) {
+    if (!deplanWallet || !followStatus?.isFollowing || claimAmount < 1) {
       setIsEligible(false);
       return;
     }
 
     setIsEligible(true);
-  }, [deplanWallet, followStatus]);
+  }, [claimAmount, deplanWallet, followStatus]);
 
   return (
     <ElegibilityContext.Provider
