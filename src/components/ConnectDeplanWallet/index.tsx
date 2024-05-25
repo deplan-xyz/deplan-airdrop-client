@@ -53,13 +53,24 @@ const ConnectDeplanWallet: FC = () => {
     setWallet(event.data.data);
   };
 
+  const handleWcKey = (event: MessageEvent) => {
+    if (event.data.type === 'wc-uri-received') {
+      console.log('wc-uri-received', event.data.data);
+      window.open(event.data.data, '_blank');
+
+      return;
+    }
+  };
+
   useEffect(() => {
     window.addEventListener('message', handleCloseMessage);
     window.addEventListener('message', handleAddressChangeMessage);
+    window.addEventListener('message', handleWcKey);
 
     return () => {
       window.removeEventListener('message', handleCloseMessage);
       window.removeEventListener('message', handleAddressChangeMessage);
+      window.removeEventListener('message', handleWcKey);
     };
   }, []);
 
