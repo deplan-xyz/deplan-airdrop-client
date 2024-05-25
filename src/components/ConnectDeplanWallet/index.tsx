@@ -1,9 +1,10 @@
 import { FC, useEffect } from 'react';
 
+import { isDesktop } from '../../utils/screen';
+import { useDeplanWallet } from '../../hooks/useDeplanWalletAddress';
 import { connectDeplanWalletOrigin } from '../../constants/connect-deplan-wallet-frame-src';
 
 import styles from './ConnectDeplanWallet.module.scss';
-import { useDeplanWallet } from '../../hooks/useDeplanWalletAddress';
 
 const ConnectDeplanWallet: FC = () => {
   const { deplanWallet, setWallet } = useDeplanWallet();
@@ -55,6 +56,13 @@ const ConnectDeplanWallet: FC = () => {
 
   const handleWcKey = (event: MessageEvent) => {
     if (event.data.type === 'wc-uri-received') {
+      const _isDesktop = isDesktop();
+
+      if (_isDesktop) {
+        console.log('desktop');
+        return;
+      }
+
       console.log('wc-uri-received', event.data.data);
       window.open(event.data.data);
 
