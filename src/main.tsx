@@ -1,17 +1,15 @@
-import React from 'react'
-import { createRoot } from 'react-dom/client'
-import { RouterProvider } from 'react-router-dom'
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { RouterProvider } from 'react-router-dom';
 import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
-import { SnackbarProvider } from 'notistack'
+import { SnackbarProvider } from 'notistack';
 
-
-import router from './config/router'
-import Web3ModalProvider from './providers/web3modal'
+import router from './config/router';
+import Web3ModalProvider from './providers/web3modal';
 import ConnectDeplanAppDialog from './components/ConnectDeplanAppDialog';
-
-import './index.scss'
 import { DeplanWalletProvider } from './hooks/useDeplanWalletAddress';
 import { ElegibilityProvider } from './hooks/useEligibility';
+import './index.scss';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -22,7 +20,7 @@ const queryClient = new QueryClient({
   }
 });
 
-createRoot(document.getElementById("root")!).render(
+createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <SnackbarProvider />
     <Web3ModalProvider>
@@ -37,4 +35,3 @@ createRoot(document.getElementById("root")!).render(
     </Web3ModalProvider>
   </React.StrictMode>
 );
-
