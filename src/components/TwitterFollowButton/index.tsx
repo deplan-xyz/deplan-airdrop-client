@@ -46,7 +46,8 @@ const TwitterFollowButton: FC<TwitterFollowButtonProps> = ({
             <span className={styles.checkmark} />
           ) : (
             <div className={styles.connectText}>
-              <img src={XLogo} width={20} /> <span>Connect</span>
+              <img src={XLogo} alt="twitter-logo" width={20} />
+              <span>Connect</span>
             </div>
           )}
         </button>
