@@ -1,15 +1,16 @@
-import { FC, useEffect, useState } from 'react'
+import { FC, useEffect } from 'react'
 
 import { connectDeplanWalletOrigin } from '../../constants/connect-deplan-wallet-frame-src';
 
 import styles from './ConnectDeplanWallet.module.scss'
+import { useDeplanWallet } from '../../hooks/useDeplanWalletAddress';
 
 const ConnectDeplanWallet: FC = () => {
-    const [walletAddress, setWalletAddress] = useState<string | null>(null);
+    const { deplanWallet, setWallet } = useDeplanWallet();
 
     const onToggle = () => {
         const dialog = document.getElementById('connect-deplan-app') as HTMLDialogElement;
-        if (!dialog || walletAddress) {
+        if (!dialog || deplanWallet) {
             return;
         }
 
@@ -42,7 +43,7 @@ const ConnectDeplanWallet: FC = () => {
             return;
         }
 
-        setWalletAddress(event.data.data);
+        setWallet(event.data.data);
     }
 
 
@@ -60,9 +61,9 @@ const ConnectDeplanWallet: FC = () => {
         <>
             <div className={styles.container}>
                 <button
-                    className={`${styles.connectButton} ${walletAddress ? styles.connectButtonConnected : ''}`}
-                    onClick={onToggle}>{walletAddress ?
-                        <span className={styles.checkmark} title={walletAddress} /> :
+                    className={`${styles.connectButton} ${deplanWallet ? styles.connectButtonConnected : ''}`}
+                    onClick={onToggle}>{deplanWallet ?
+                        <span className={styles.checkmark} title={deplanWallet} /> :
                         <span>Open DePlan</span>}
                 </button>
             </div>

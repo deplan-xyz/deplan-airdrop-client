@@ -10,6 +10,8 @@ import Web3ModalProvider from './providers/web3modal'
 import ConnectDeplanAppDialog from './components/ConnectDeplanAppDialog';
 
 import './index.scss'
+import { DeplanWalletProvider } from './hooks/useDeplanWalletAddress';
+import { ElegibilityProvider } from './hooks/useEligibility';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,7 +27,11 @@ createRoot(document.getElementById("root")!).render(
     <SnackbarProvider />
     <Web3ModalProvider>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
+        <DeplanWalletProvider>
+          <ElegibilityProvider>
+            <RouterProvider router={router} />
+          </ElegibilityProvider>
+        </DeplanWalletProvider>
         <ConnectDeplanAppDialog />
       </QueryClientProvider>
     </Web3ModalProvider>

@@ -1,12 +1,9 @@
-import { FC } from 'react';
-import { useQueryClient } from '@tanstack/react-query';
+import { FC, useEffect } from 'react';
 
-import useWallet from '../../hooks/useWallet';
-import { CheckTwitterFollowStatusResponse } from '../../api/types';
 import CircleLoader from '../CircleLoader';
+import useCheckTwitterFollow from '../../hooks/useQueryLongpolling';
 
 import XLogo from './../../assets/twitterx.svg'
-
 import styles from './TwitterFollowButton.module.scss';
 
 interface TwitterFollowButtonProps {
@@ -15,13 +12,14 @@ interface TwitterFollowButtonProps {
 }
 
 const TwitterFollowButton: FC<TwitterFollowButtonProps> = ({ onConnect, loading }) => {
-    const { address } = useWallet();
-    const queryClient = useQueryClient();
+    const { followStatus, checkIsuserFollowDePlanOnTwitter } = useCheckTwitterFollow();
 
-    const isFollowingData = queryClient.getQueryData<CheckTwitterFollowStatusResponse>(['twitterFollowStatus', address]);
+    useEffect(() => {
+        checkIsuserFollowDePlanOnTwitter();
+    }, []);
 
     const onClick = async () => {
-        if (isFollowingData?.isFollowing) return;
+        if (followStatus?.isFollowing) return;
 
         onConnect();
     }
@@ -32,8 +30,8 @@ const TwitterFollowButton: FC<TwitterFollowButtonProps> = ({ onConnect, loading 
             {loading ?
                 <div className={styles.buttonLoading}><CircleLoader width='20px' height='20px' /></div> :
                 <button
-                    className={`${styles.button} ${isFollowingData?.isFollowing ? styles.buttonFollowing : ''}`}
-                    onClick={onClick}>{isFollowingData?.isFollowing ?
+                    className={`${styles.button} ${followStatus?.isFollowing ? styles.buttonFollowing : ''}`}
+                    onClick={onClick}>{followStatus?.isFollowing ?
                         <span className={styles.checkmark} /> :
                         <div className={styles.connectText}><img src={XLogo} width={20} /> <span>Connect</span></div>}
                 </button>}

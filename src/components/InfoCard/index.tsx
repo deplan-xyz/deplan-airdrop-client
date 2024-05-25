@@ -1,4 +1,4 @@
-// import ClaimButton from '../ClaimButton'
+import ClaimButton from '../ClaimButton'
 import ClaimPeriod from '../ClaimPeriod'
 import EligibilityInfo from '../EligibilityInfo'
 import ParticipationConditions from '../ParticipationConditions'
@@ -18,8 +18,7 @@ export const InfoCard = () => {
             </div>
             <div>
                 <ParticipationConditions />
-                {/* Uncomment when claim is ready */}
-                {/* <ClaimButton /> */}
+                <ClaimButton />
             </div>
         </div>
     )

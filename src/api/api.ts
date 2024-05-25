@@ -10,7 +10,7 @@ const baseURL = 'https://equitywallet-b362155a0894.herokuapp.com';
 const baseURLDev = 'http://localhost:9899';
 
 const instance = axios.create({
-    baseURL: isDev ? baseURLDev : baseURL,
+    baseURL: !isDev ? baseURLDev : baseURL,
 });
 
 enum Routes {
@@ -31,11 +31,10 @@ export const fetchClaimData = async (wallet: string): Promise<ClaimData> => {
     }
 }
 
-export const claim = async (wallet: string): Promise<Transaction> => {
+export const claim = async (wallet: string, dplanWallet: string): Promise<Transaction> => {
     try {
-        console.log('Claiming', wallet);
-
-        const { data: encodedTransaction } = await instance.get<ClaimData>(Routes.CLAIM.replace(':wallet', wallet));
+        const { data: encodedTransaction } =
+            await instance.get<ClaimData>(Routes.CLAIM.replace(':wallet', wallet) + `?dplanWallet=${dplanWallet}`);
 
         const transaction = Transaction.from(Buffer.from(encodedTransaction.txnHash, 'base64'));
 
