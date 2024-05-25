@@ -56,7 +56,7 @@ const ConnectDeplanWallet: FC = () => {
   const handleWcKey = (event: MessageEvent) => {
     if (event.data.type === 'wc-uri-received') {
       console.log('wc-uri-received', event.data.data);
-      window.open(event.data.data, '_blank');
+      window.open(event.data.data);
 
       return;
     }
