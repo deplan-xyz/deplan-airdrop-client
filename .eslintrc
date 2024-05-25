@@ -27,10 +27,19 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:react/recommended"
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended"
   ],
-  "plugins": ["simple-import-sort"],
+  "plugins": [
+    "react",
+    "react-hooks",
+    "jsx-a11y",
+    "simple-import-sort",
+    "prettier"
+  ],
   "rules": {
+    "prettier/prettier": "error",
     "react/react-in-jsx-scope": "off",
     "react/no-unescaped-entities": "off"
   }

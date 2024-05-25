@@ -1,28 +1,40 @@
-import { FC } from 'react'
-
-import { Web3Modal } from '../../providers/web3modal'
+import { FC } from 'react';
+import { useWeb3Modal, useWeb3ModalState } from '@web3modal/solana/react';
 
 import styles from './LoginWithWalletButton.module.scss';
 interface LogInWithWalletButtonProps {
-    size?: "sm" | "md" | "mdl",
-    mode?: "connect" | "disconnect"
+  size?: 'sm' | 'md' | 'mdl';
+  mode?: 'connect' | 'disconnect';
 }
 
 const CustomConnectButton: FC = () => {
-    const onConnect = async () => {
-        await Web3Modal.open();
-        Web3Modal.setLoading(true);
-    };
+  const { open } = useWeb3Modal();
+  const { open: isOpened } = useWeb3ModalState();
 
-    return (
-        <button disabled={Web3Modal.getState().open} className={styles.connectButton} onClick={onConnect}>Connect Wallet</button>
-    )
-}
+  const onConnect = async () => {
+    await open();
+  };
 
-const LogInWithWalletButton: FC<LogInWithWalletButtonProps> = ({ size = 'md', mode }) => {
-    return (
-        mode === 'connect' ? <CustomConnectButton /> : <w3m-button size={size} balance="hide" />
-    )
-}
+  return (
+    <button
+      disabled={isOpened}
+      className={styles.connectButton}
+      onClick={onConnect}
+    >
+      Connect Wallet
+    </button>
+  );
+};
 
-export default LogInWithWalletButton
+const LogInWithWalletButton: FC<LogInWithWalletButtonProps> = ({
+  size = 'md',
+  mode
+}) => {
+  return mode === 'connect' ? (
+    <CustomConnectButton />
+  ) : (
+    <w3m-button size={size} balance="hide" />
+  );
+};
+
+export default LogInWithWalletButton;

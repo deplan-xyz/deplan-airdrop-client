@@ -5,13 +5,13 @@ import useNavigationChange from '../../hooks/useNavigatoinChange';
 import styles from './PageLayout.module.scss';
 
 const PageLayout = () => {
-    useNavigationChange();
+  useNavigationChange();
 
-    return (
-        <div className={styles.container}>
-            <Outlet />
-        </div>
-    );
+  return (
+    <div className={styles.container}>
+      <Outlet />
+    </div>
+  );
 };
 
 export default PageLayout;
