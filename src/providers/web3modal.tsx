@@ -30,9 +30,6 @@ createWeb3Modal({
     '--w3m-font-family': 'Instrument Sans, sans-serif',
     '--w3m-accent': '#34DEDC'
   },
-  featuredWalletIds: [
-    'a797aa35c0fadbfc1a53e7f675162ed5226968b44a19ee3d24385c64d1d3c393'
-  ],
   termsConditionsUrl: 'https://walletconnect.com/terms',
   privacyPolicyUrl: 'https://walletconnect.com/privacy'
 });
