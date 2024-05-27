@@ -64,7 +64,7 @@ const ConnectDeplanWallet: FC = () => {
       }
 
       console.log('wc-uri-received', event.data.data);
-      window.open(event.data.data);
+      window.location.assign(event.data.data);
 
       return;
     }
