@@ -15,7 +15,7 @@ const ParticipationConditions = () => {
   const { startFollow, inProgress } = useCheckTwitterFollow();
 
   const openLink = (url: string) => {
-    window.open(url, '_blank');
+    window.open(url);
   };
 
   const follow = async () => {
