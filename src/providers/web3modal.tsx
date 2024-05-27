@@ -31,7 +31,7 @@ createWeb3Modal({
     '--w3m-accent': '#34DEDC'
   },
   termsConditionsUrl: 'https://walletconnect.com/terms',
-  privacyPolicyUrl: 'https://walletconnect.com/privacy'
+  privacyPolicyUrl: 'https://walletconnect.com/privacy',
 });
 
 interface Web3ModalProviderProps {
