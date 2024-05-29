@@ -14,7 +14,6 @@ const useCheckTwitterFollow = () => {
   const {
     data: followStatus,
     error,
-    refetch
   } = useQuery({
     queryKey: ['twitterFollowStatus', address],
     enabled: !!address && inProgress,
@@ -60,7 +59,6 @@ const useCheckTwitterFollow = () => {
     error,
     startFollow,
     inProgress,
-    checkIsuserFollowDePlanOnTwitter: refetch
   };
 };
 
