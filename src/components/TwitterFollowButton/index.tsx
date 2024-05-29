@@ -1,34 +1,57 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 
 import CircleLoader from '../CircleLoader';
 import useCheckTwitterFollow from '../../hooks/useQueryLongpolling';
 
 import XLogo from './../../assets/twitterx.svg';
 import styles from './TwitterFollowButton.module.scss';
+import { useQueryClient } from '@tanstack/react-query';
+import { checkIsuserFollowDePlanOnTwitter } from '../../api/api';
+import useWallet from '../../hooks/useWallet';
 
-interface TwitterFollowButtonProps {
-  onConnect: () => void;
-  loading: boolean;
-}
-
-const TwitterFollowButton: FC<TwitterFollowButtonProps> = ({
-  onConnect,
-  loading
-}) => {
+const TwitterFollowButton: FC = () => {
+  const client = useQueryClient();
+  const { address } = useWallet();
   const { followStatus } = useCheckTwitterFollow();
+  const { startFollow, inProgress } = useCheckTwitterFollow();
+
+  const openLink = (url: string) => {
+    window.location.assign(url);
+  };
+
+  const follow = async () => {
+    try {
+      const url = await startFollow();
+
+      openLink(url);
+    } catch (error) {
+      console.error('Error getting Twitter auth URL', error);
+    }
+  };
 
   const onClick = async () => {
     if (followStatus?.isFollowing) return;
 
-    onConnect();
+    follow();
   };
+
+  useEffect(() => {
+    if (!address) return;
+
+    checkIsuserFollowDePlanOnTwitter(address)
+      .then(res => {
+        console.log('Twitter follow status:', res);
+
+        client.setQueryData(['twitterFollowStatus', address], res);
+      });
+  }, []);
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.describtion}>
         <span>Connect and Follow DePlan on your Twitter account</span>
       </div>
-      {loading ? (
+      {inProgress ? (
         <div className={styles.buttonLoading}>
           <CircleLoader width="20px" height="20px" />
         </div>

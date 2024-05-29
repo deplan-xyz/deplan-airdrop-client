@@ -1,7 +1,6 @@
 import { format } from 'date-fns/format';
 
 import useEligibility from '../../hooks/useEligibility';
-import useCheckTwitterFollow from '../../hooks/useQueryLongpolling';
 import ConnectDeplanWallet from '../ConnectDeplanWallet';
 import TwitterFollowButton from '../TwitterFollowButton';
 import styles from './ParticipationConditions.module.scss';
@@ -12,20 +11,9 @@ const ParticipationConditions = () => {
   const { holdPeriod } = useEligibility();
   const from = format(new Date(holdPeriod.from), 'MMM d');
   const to = format(new Date(holdPeriod.to), 'MMM d, yyyy');
-  const { startFollow, inProgress } = useCheckTwitterFollow();
 
   const openLink = (url: string) => {
     window.location.assign(url);
-  };
-
-  const follow = async () => {
-    try {
-      const url = await startFollow();
-
-      openLink(url);
-    } catch (error) {
-      console.error('Error getting Twitter auth URL', error);
-    }
   };
 
   return (
@@ -49,7 +37,7 @@ const ParticipationConditions = () => {
         </li>
         <li className={styles.item}>
           You follow DePlan on X and posted "DePlan is the new plan" <br />
-          <TwitterFollowButton loading={inProgress} onConnect={follow} />
+          <TwitterFollowButton />
         </li>
         <li className={styles.item}>
           You are using DePlan Browser with Pay-As-You-Go products <br />
