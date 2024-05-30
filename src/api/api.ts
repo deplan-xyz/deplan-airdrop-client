@@ -11,7 +11,7 @@ const baseURLDev = 'http://localhost:9899';
 
 const instance = axios.create({
   baseURL: isDev ? baseURLDev : baseURL,
-  header: {
+  headers: {
     'x-tzoffset': new Date().getTimezoneOffset() * -1,
   },
 });
