@@ -4,6 +4,7 @@ import {
   connectDeplanWalletFrameSrc,
   connectDeplanWalletOrigin
 } from '../../constants/connect-deplan-wallet-frame-src';
+import styles from './ConnectDeplanAppDialog.module.scss';
 
 import './ConnectDeplanAppDialog.module.scss';
 
@@ -43,7 +44,7 @@ const ConnectDeplanAppDialog: FC = () => {
 
   return (
     <>
-      <dialog ref={dialogRef} id="connect-deplan-app">
+      <dialog ref={dialogRef} id="connect-deplan-app" className={styles.connectDeplanApp}>
         <iframe
           id="deplan-iframe"
           style={{

@@ -1,4 +1,10 @@
-/*   Open state of the dialog  */
+.connectDeplanApp {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+
 dialog[open] {
     opacity: 1;
     border: none;
