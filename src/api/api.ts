@@ -10,9 +10,11 @@ const baseURL = 'https://equitywallet-b362155a0894.herokuapp.com';
 const baseURLDev = 'http://localhost:9899';
 
 const instance = axios.create({
-  baseURL: isDev ? baseURLDev : baseURL,
+  // baseURL: isDev ? baseURLDev : baseURL,
+  baseUrl: 'https://b9f4-193-77-224-182.ngrok-free.app',
   headers: {
     'x-tzoffset': new Date().getTimezoneOffset() * -1,
+    'ngrok-skip-browser-warning': true,
   },
 });
 
