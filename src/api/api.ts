@@ -6,12 +6,12 @@ import { CheckTwitterFollowStatusResponse } from './types';
 
 const isDev = import.meta.env.DEV;
 
-const baseURL = 'https://equitywallet-b362155a0894.herokuapp.com';
+// const baseURL = 'https://equitywallet-b362155a0894.herokuapp.com';
+const baseURL = 'https://b9f4-193-77-224-182.ngrok-free.app';
 const baseURLDev = 'http://localhost:9899';
 
 const instance = axios.create({
-  // baseURL: isDev ? baseURLDev : baseURL,
-  baseUrl: 'https://b9f4-193-77-224-182.ngrok-free.app',
+  baseURL: isDev ? baseURLDev : baseURL,
   headers: {
     'x-tzoffset': new Date().getTimezoneOffset() * -1,
     'ngrok-skip-browser-warning': true,
