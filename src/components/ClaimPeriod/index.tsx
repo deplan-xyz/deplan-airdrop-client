@@ -9,7 +9,7 @@ const ClaimPeriod = () => {
   return (
     <div>
       <div className={style.title}>
-        {from} - {to}
+        {from} - {to} GMT
       </div>
       <div className={style.subtitle}>Claim period</div>
     </div>
