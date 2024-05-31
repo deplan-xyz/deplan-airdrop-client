@@ -10,7 +10,7 @@ const baseURL = 'https://equitywallet-b362155a0894.herokuapp.com';
 const baseURLDev = 'http://localhost:9899';
 
 const instance = axios.create({
-  baseURL: isDev ? baseURLDev : baseURL
+  baseURL: isDev ? baseURLDev : baseURL,
 });
 
 enum Routes {
