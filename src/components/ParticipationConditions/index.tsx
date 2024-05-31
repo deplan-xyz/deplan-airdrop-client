@@ -9,8 +9,8 @@ const TG_URL = 'https://t.me/+lb5j0kVrSyJiMTky';
 
 const ParticipationConditions = () => {
   const { holdPeriod } = useEligibility();
-  const from = format(new Date(holdPeriod.from), 'MMM d');
-  const to = format(new Date(holdPeriod.to), 'MMM d, yyyy');
+  const from = format(new Date(holdPeriod.from).getUTCDate(), 'MMM d');
+  const to = format(new Date(holdPeriod.to).getUTCDate(), 'MMM d, yyyy');
 
   const openLink = (url: string) => {
     window.location.assign(url);

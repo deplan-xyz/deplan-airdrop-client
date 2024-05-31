@@ -7,6 +7,7 @@ import { useWeb3ModalProvider } from '@web3modal/solana/react';
 import { claim, claimSend } from '../../api/api';
 import useEligibility from '../../hooks/useEligibility';
 import useWallet from '../../hooks/useWallet';
+import CircleLoader from '../CircleLoader';
 
 import { useDeplanWallet } from '../../hooks/useDeplanWalletAddress';
 import styles from './ClaimButton.module.scss';
@@ -95,11 +96,18 @@ const ClaimButton = () => {
       </span>
       {!canClaim || loading || isClaimDone ? (
         <div className={`${styles.button} ${styles.disabled}`}>
-          <span>
-            {!isClaimDone
-              ? `Claim ${tokenAmount.toLocaleString()} $DPLN`
-              : `${tokenAmount.toLocaleString()} $DPLN claimed`}
-          </span>
+          {
+            loading ?
+              <CircleLoader height='35px' width='35px' /> :
+              (
+                <span>
+                  {!isClaimDone
+                    ? `Claim ${tokenAmount.toLocaleString()} $DPLN`
+                    : `${tokenAmount.toLocaleString()} $DPLN claimed`}
+                </span>
+              )
+          }
+
         </div>
       ) : (
         <button
