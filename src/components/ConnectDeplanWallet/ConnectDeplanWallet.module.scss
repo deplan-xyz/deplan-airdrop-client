@@ -23,16 +23,12 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: all 0.3s;
 
             &:hover {
-                cursor: default;
-            }
-
-            .checkmark::before {
-                content: '\2713';
-                display: inline-block;
-                color: var(--accent-color);
-
+                cursor: pointer;
+                background-color: var(--accent-color);
+                color: var(--white-color);
             }
         }
     }

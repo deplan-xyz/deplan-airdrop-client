@@ -9,14 +9,7 @@ import styles from './ConnectDeplanWallet.module.scss';
 const ConnectDeplanWallet: FC = () => {
   const { deplanWallet, setWallet } = useDeplanWallet();
 
-  const onToggle = () => {
-    const dialog = document.getElementById(
-      'connect-deplan-app'
-    ) as HTMLDialogElement;
-    if (!dialog || deplanWallet) {
-      return;
-    }
-
+  const toggleDialogVisibility = (dialog: HTMLDialogElement) => {
     const iframe = document.querySelector(
       '#deplan-iframe'
     ) as HTMLIFrameElement;
@@ -34,6 +27,14 @@ const ConnectDeplanWallet: FC = () => {
       );
       dialog.showModal();
     }
+  };
+
+  const onToggle = () => {
+    const dialog = document.getElementById(
+      'connect-deplan-app'
+    ) as HTMLDialogElement;
+
+    toggleDialogVisibility(dialog);
   };
 
   const handleCloseMessage = (event: MessageEvent) => {
@@ -90,7 +91,9 @@ const ConnectDeplanWallet: FC = () => {
           onClick={onToggle}
         >
           {deplanWallet ? (
-            <span className={styles.checkmark} title={deplanWallet} />
+            <span className={styles.checkmark} title={deplanWallet}>
+              Reconnect
+            </span>
           ) : (
             <span>Open DePlan</span>
           )}
