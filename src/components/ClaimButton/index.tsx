@@ -53,28 +53,30 @@ const ClaimButton = () => {
         throw new Error('No signed transaction');
       }
 
-      await claimSend(
+      claimSend(
         address,
         (signedTxn as Transaction).serialize().toString('base64')
-      ).catch((e) => {
-        enqueueSnackbar({
-          message:
-            'Claim failed. Try again. Reason: ' +
-            (e as AxiosError<{ message: string }>)?.response?.data?.message,
-          variant: 'error',
-          action: () => (
-            <button className={styles.retryTextButton} onClick={onClaim}>
-              Retry
-            </button>
-          )
+      )
+        .then(() => {
+          enqueueSnackbar({
+            message: `Successfully claimed ${tokenAmount.toLocaleString()} $DPLN`,
+            variant: 'success'
+          });
+          refetchClaimData();
+        })
+        .catch((e) => {
+          enqueueSnackbar({
+            message:
+              'Claim failed. Try again. Reason: ' +
+              (e as AxiosError<{ message: string }>)?.response?.data?.message,
+            variant: 'error',
+            action: () => (
+              <button className={styles.retryTextButton} onClick={onClaim}>
+                Retry
+              </button>
+            )
+          });
         });
-      });
-
-      enqueueSnackbar({
-        message: `Successfully claimed ${tokenAmount.toLocaleString()} $DPLN`,
-        variant: 'success'
-      });
-      refetchClaimData();
     } catch (error) {
       console.error('Error claiming', error);
       enqueueSnackbar({
