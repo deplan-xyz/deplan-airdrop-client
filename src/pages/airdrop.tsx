@@ -21,7 +21,7 @@ const Airdrop = () => {
         <ParachuteBG />
       </CircleDecoration>
       <div className={styles.content}>
-        <span className={styles.title}>Spring $DPLN Airdrop</span>
+        <span className={styles.title}>Summer $DPLN Airdrop</span>
         <div className={styles.descriptionContainer}>
           <span className={styles.description}>
             Continue supporting DePlan early adopters and believers.
