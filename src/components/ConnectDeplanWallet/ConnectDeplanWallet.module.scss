@@ -1,5 +1,9 @@
 .container {
     margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
 
     .connectButton {
         border: none;
@@ -24,11 +28,28 @@
             align-items: center;
             justify-content: center;
             transition: all 0.3s;
+            pointer-events: none;
+
+            &:hover {
+                cursor: default;
+            }
+
+            .checkmark::before {
+                content: '\2713';
+                display: inline-block;
+                color: var(--accent-color);
+
+            }
+        }
+
+        &Reconnect {
+            @extend .connectButtonConnected;
+            pointer-events: all;
+            border: none;
+            padding: 0;
 
             &:hover {
                 cursor: pointer;
-                background-color: var(--accent-color);
-                color: var(--white-color);
             }
         }
     }
