@@ -91,13 +91,19 @@ const ConnectDeplanWallet: FC = () => {
           onClick={onToggle}
         >
           {deplanWallet ? (
-            <span className={styles.checkmark} title={deplanWallet}>
-              Reconnect
-            </span>
+            <span className={styles.checkmark} title={deplanWallet} />
           ) : (
             <span>Open DePlan</span>
           )}
         </button>
+        {deplanWallet ? (
+          <button
+            className={styles.connectButtonReconnect}
+            onClick={onToggle}
+          >
+            Reconnect DePlan
+          </button>
+        ) : null}
       </div>
     </>
   );
